@@ -117,7 +117,7 @@ export const InvalidForm = styled.p`
   display: flex;
   margin-bottom: 5px;
 
-  font-family: "Lato", sans-serif;
+  font-family: "Quicksand", sans-serif;
 
   font-size: 17px;
   font-weight: 700;
@@ -132,7 +132,7 @@ export const AuthButton = styled.button`
   height: 65px;
   min-width: 429px;
 
-  font-family: "Oswald", sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 27px;
   font-weight: 700;
   color: ${lightColor0};
@@ -155,7 +155,7 @@ export const GoTo = styled.p`
   margin: 0 auto;
   margin-top: 22px;
 
-  font-family: "Lato", sans-serif;
+  font-family: "Quicksand", sans-serif;
   text-decoration: underline;
   font-size: 20px;
   font-weight: 400;

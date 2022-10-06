@@ -7,10 +7,10 @@
 }
 
 body {
-  font-family: 'Lexend Deca', sans-serif;
-  background-color: #141414;
+  font-family: 'Quicksand';
+  /* background-color: #242423; */
   color: #ffffff;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 /* #root {

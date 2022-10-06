@@ -7,6 +7,8 @@ import Login from "./pages/auth/Login"
 import Register from "./pages/auth/Register"
 import UserContext from "./contexts/UserContext";
 import { useState } from "react";
+import Home from "./pages/home/Home";
+import CreateProfile from "./pages/profile/CreateProfile";
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
       <Routes>
             <Route path="/" element={<Login />} />;
             <Route path="signup" element={<Register />} />;
+            <Route path="home" element={<Home />} />;
+            <Route path="createProfile" element={<CreateProfile />} />;
       </Routes>
     </Router>
     </UserContext.Provider>

@@ -14,7 +14,6 @@ import {
   import { useNavigate } from "react-router-dom";
   import { ThreeDots } from "react-loader-spinner";
   import UserContext from "../../contexts/UserContext";
-  import axios from "axios";
   import * as service from "../../services/authService";
 
   export default function Login() {
