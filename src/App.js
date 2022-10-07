@@ -9,6 +9,8 @@ import UserContext from "./contexts/UserContext";
 import { useState } from "react";
 import Home from "./pages/home/Home";
 import CreateProfile from "./pages/profile/CreateProfile";
+import FindYourLove from "./pages/findYourLove/findYourLove";
+import Chat from "./pages/chat/Chat";
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
             <Route path="signup" element={<Register />} />;
             <Route path="home" element={<Home />} />;
             <Route path="createProfile" element={<CreateProfile />} />;
+            <Route path="love" element={<FindYourLove/>} />;
+            <Route path="chat" element={<Chat/>} />;
       </Routes>
     </Router>
     </UserContext.Provider>
