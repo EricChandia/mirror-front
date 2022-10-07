@@ -4,7 +4,7 @@ import { darkColor0, lightColor0, lightColor1, lightColor2, lightColor3, lightCo
 
 export const TransparentInput1 = styled.input`
 
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
