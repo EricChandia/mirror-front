@@ -10,7 +10,7 @@ export default function Chat(){
     return(
         <>
             <ChatScreen>
-
+        
             </ChatScreen>
             <Footer/>
         </>

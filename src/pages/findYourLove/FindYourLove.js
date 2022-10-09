@@ -10,17 +10,18 @@ export default function FindYourLove(){
     const config = getHeaderToken();
     const [profiles, setProfiles] = useState([]);
     const [activeProfile, setActiveProfile] = useState(0);
+    const [displayLike, setDisplayLike] = useState("initial");
 
     useEffect(() => {
 
         async function find10Profiles(){
             try{
-
                 const profilesData = await service.find10Profiles(config);
                 //console.log(profilesData);
                 
                 setProfiles(profilesData);
 
+                console.log("Profiles: ");
                 console.log(profiles);
             }catch(error){
                 console.log(error);
@@ -29,6 +30,12 @@ export default function FindYourLove(){
 
         find10Profiles();
     },[profiles.length]);
+
+    useEffect(() => {
+        if(profiles.length === 0){
+            setDisplayLike("none");
+        }
+    }, [profiles.length]);
 
 
     async function closeProfile(){
@@ -44,8 +51,11 @@ export default function FindYourLove(){
         
         const whoReceivedLikeId = profiles[activeProfile].id;
         console.log(whoReceivedLikeId);
-        await service.like(whoReceivedLikeId, config);
+        const likeResponse = await service.like(whoReceivedLikeId, config);
 
+        if(likeResponse.match === true){
+            alert("Opa, você acabou de dar um match, não perca tempo e mande uma mensagem agora!");
+        }
         setActiveProfile(activeProfile+1);
         //console.log(activeProfile);
     }
@@ -53,9 +63,9 @@ export default function FindYourLove(){
     return(
         <>
             <FindYourLoveScreen>
-                <CloseProfile onClick={() => closeProfile()}><IconClose/></CloseProfile>
-                <LikeProfile onClick={() => likeProfile()}><IconLike/></LikeProfile>
-                {profiles.length === 0 ? "Hmm parece que não tem mais ninguem perto de você, mas não se preocupe estamos trabalhando para mais gente utilizar o aplicativo."
+                <CloseProfile display={displayLike} onClick={() => closeProfile()}><IconClose/></CloseProfile>
+                <LikeProfile display={displayLike} onClick={() => likeProfile()}><IconLike/></LikeProfile>
+                {profiles.length === 0 ? <h1>Hmm parece que não tem mais ninguem perto de você, mas não se preocupe estamos trabalhando para mais gente utilizar o aplicativo.</h1>
                 :
                 profiles.map((profile, index) => 
                     <ProfileContainer key={profile.id} display={activeProfile === index ? "flex" : "none"}>
@@ -89,6 +99,7 @@ const CloseProfile = styled.div`
     left: 0;
     margin-top: 80.5vh;
     margin-left: 20vw;
+    display: ${props => props.display}
 `
 
 const LikeProfile = styled.div`
@@ -96,6 +107,7 @@ const LikeProfile = styled.div`
     right: 0;
     margin-top: 80.5vh;
     margin-right: 20vw;
+    display: ${props => props.display};
 `
 
 
