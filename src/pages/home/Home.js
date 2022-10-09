@@ -16,6 +16,8 @@ export default function Home(){
     const [profileExists, setProfileExists] = useState(false);
     const [profile, setProfile] = useState({});
     const config = getHeaderToken();
+
+    //console.log(config);
         
     useEffect(() => {
         async function checkIfProfileExists(){

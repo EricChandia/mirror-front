@@ -21,7 +21,7 @@ const FooterContainer = styled.div`
     height: 10vh;
     padding: 0 10%;
     z-index: 99;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
 
