@@ -18,7 +18,6 @@ export default function Chat(){
         async function getAllProfileMatchs(){
             const profileMatchsData = await chatService.getAllProfileMatchs(config);
 
-            console.log(profileMatchsData);
             setProfileMatchs([...profileMatchsData]);
         }
 
@@ -29,7 +28,6 @@ export default function Chat(){
 
     function openChatWithMatch(index){
         const selectedChatProfile = profileMatchs[index];
-        console.log(selectedChatProfile.matchId);
 
         navigate(`/chat/${selectedChatProfile.matchId}`, {state:
             {

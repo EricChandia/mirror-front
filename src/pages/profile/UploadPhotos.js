@@ -46,8 +46,6 @@ export default function UploadPhotos() {
     const config = getHeaderToken();
     //const allPicsData = await axios.get("http://localhost:5000/getProfilePhotos", config);
     const allPicsData = await uploadService.getProfilePhotos(config);
-    console.log(allPicsData);
-    console.log(allPicsData.data);
 
     if(!allPicsData){
         setAllPics([]);

@@ -19,8 +19,6 @@ export default function FindYourLove(){
             
             setProfiles(profilesData);
 
-            console.log("Profiles: ");
-            console.log(profiles);
         }catch(error){
             console.log(error);
         }
@@ -33,13 +31,10 @@ export default function FindYourLove(){
 
     useEffect(() => {
         async function getMoreProfiles(){
-            console.log("foi buscar mais");
             await find10Profiles();
             setActiveProfile(0);
         }
 
-        console.log("profiles length " + profiles.length);
-        console.log("active profile " + activeProfile);
 
         if(profiles.length-1 === activeProfile){
             getMoreProfiles();

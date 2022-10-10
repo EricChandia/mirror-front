@@ -45,7 +45,6 @@ import {
         setLoader(<ThreeDots color="white" />);
         navigate("/home");
       } catch (error) {
-        console.log(error.response.status);
         setLoader(<ThreeDots color="white" />);
         setDisable(true);
         setTimeout(() => setDisable(false), 500);
