@@ -21,15 +21,15 @@ export default function Home(){
         async function checkIfProfileExists(){
             
             try{
-                const profile = await service.getUserProfile(config);
-
-                if(!profile){
+                const profileData = await service.getUserProfile(config);
+                console.log(profileData);
+                if(!profileData){
                     setProfileExists(false);
                     return;
                 }else{
                     //console.log(profile);
                     setProfileExists(true);
-                    setProfile(profile);
+                    setProfile(profileData);
                 }
 
                 
@@ -47,10 +47,10 @@ export default function Home(){
         <HomeScreen>
             {profileExists ? 
                 <>
-                    <ProfilePicture width="100px" height="100px" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600" alt="profilePicture"></ProfilePicture>
+                    <ProfilePicture onClick={() => navigate("/uploadPhotos")} width="100px" height="100px" src={profile?.photos[0]?.photoUrl} alt="profilePicture"></ProfilePicture>
                     <>
                     <Name>{profile.name}</Name>
-                    <ProfileTag>@joji</ProfileTag>
+                    {/* <ProfileTag>@joji</ProfileTag> */}
                     </>
                     
                 </>
@@ -60,9 +60,10 @@ export default function Home(){
                     <CreateProfileBtn onClick={() => navigate("/createProfile")} height="8%" width="40%">Criar perfil</CreateProfileBtn>
                 </>
             }
-
+        <BtnExit onClick={() => navigate("/")}>Sair</BtnExit>
         </HomeScreen>
-        <Footer />
+        {profileExists ? <Footer /> : <BlankFooter />}
+        
     </>
     );
 }
@@ -72,6 +73,8 @@ const HomeScreen = styled.div`
     width:  100%;
     height: 90vh;
     padding: 20px 20px;
+
+    position: relative;
 
     display: flex;
     flex-direction: column;
@@ -117,7 +120,20 @@ const ProfilePicture = styled(CircleImg)`
 `;
 
 
+const BtnExit = styled.div`
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 10px;
+
+    font-family: "Quicksand";
+    font-size: 15px;
+    font-weight: 400;
+`
 
 
+const BlankFooter = styled.div`
+    width: 100%;
+    min-height: 10vh;
 
-
+    background-color: ${lightColor1};
+`

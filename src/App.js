@@ -12,6 +12,7 @@ import CreateProfile from "./pages/profile/CreateProfile";
 import FindYourLove from "./pages/findYourLove/FindYourLove";
 import Chat from "./pages/chat/Chat";
 import UploadPhotos from "./pages/profile/UploadPhotos";
+import ChatMessages from "./pages/chat/ChatMessages";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="love" element={<FindYourLove/>} />;
             <Route path="chat" element={<Chat/>} />;
             <Route path="uploadPhotos" element={<UploadPhotos/>} />;
+            <Route path="chat/:id" element={<ChatMessages/>} />;
       </Routes>
     </Router>
     </UserContext.Provider>
@@ -37,5 +39,6 @@ function App() {
 }
 
 export default App;
+
 
 

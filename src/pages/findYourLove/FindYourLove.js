@@ -12,35 +12,59 @@ export default function FindYourLove(){
     const [activeProfile, setActiveProfile] = useState(0);
     const [displayLike, setDisplayLike] = useState("initial");
 
+    async function find10Profiles(){
+        try{
+            const profilesData = await service.find10Profiles(config);
+            //console.log(profilesData);
+            
+            setProfiles(profilesData);
+
+            console.log("Profiles: ");
+            console.log(profiles);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
+        find10Profiles();
+    },[]);
 
-        async function find10Profiles(){
-            try{
-                const profilesData = await service.find10Profiles(config);
-                //console.log(profilesData);
-                
-                setProfiles(profilesData);
 
-                console.log("Profiles: ");
-                console.log(profiles);
-            }catch(error){
-                console.log(error);
-            }
+    useEffect(() => {
+        async function getMoreProfiles(){
+            console.log("foi buscar mais");
+            await find10Profiles();
+            setActiveProfile(0);
         }
 
-        find10Profiles();
-    },[profiles.length]);
+        console.log("profiles length " + profiles.length);
+        console.log("active profile " + activeProfile);
+
+        if(profiles.length-1 === activeProfile){
+            getMoreProfiles();
+        }
+
+
+        if(profiles.length === activeProfile){
+            getMoreProfiles();
+        }
+        
+    },[activeProfile]);
+
 
     useEffect(() => {
         if(profiles.length === 0){
             setDisplayLike("none");
+        }else{
+            setDisplayLike("initial");
         }
     }, [profiles.length]);
 
 
     async function closeProfile(){
         const whoReceivedDislikeId = profiles[activeProfile].id;
-        console.log(whoReceivedDislikeId);
+        //console.log(whoReceivedDislikeId);
         await service.dislike(whoReceivedDislikeId, config);
 
         setActiveProfile(activeProfile+1);
@@ -50,34 +74,36 @@ export default function FindYourLove(){
     async function likeProfile(){
         
         const whoReceivedLikeId = profiles[activeProfile].id;
-        console.log(whoReceivedLikeId);
+        //console.log(whoReceivedLikeId);
         const likeResponse = await service.like(whoReceivedLikeId, config);
 
         if(likeResponse.match === true){
             alert("Opa, você acabou de dar um match, não perca tempo e mande uma mensagem agora!");
         }
+
         setActiveProfile(activeProfile+1);
-        //console.log(activeProfile);
     }
+
+
 
     return(
         <>
             <FindYourLoveScreen>
                 <CloseProfile display={displayLike} onClick={() => closeProfile()}><IconClose/></CloseProfile>
                 <LikeProfile display={displayLike} onClick={() => likeProfile()}><IconLike/></LikeProfile>
-                {profiles.length === 0 ? <h1>Hmm parece que não tem mais ninguem perto de você, mas não se preocupe estamos trabalhando para mais gente utilizar o aplicativo.</h1>
+                {profiles.length === 0 ? <h1>Poxa, parece que não tem mais ninguem perto de você :(</h1>
                 :
                 profiles.map((profile, index) => 
                     <ProfileContainer key={profile.id} display={activeProfile === index ? "flex" : "none"}>
-                        <ProfileName><h1>Joji</h1></ProfileName> 
+                        <ProfileName><h1>{profile.name}</h1></ProfileName> 
                         <PhotosContainer>
-                            <MainProfilePhoto src={profiles[activeProfile].photos[0].photoUrl} alt={profiles[0].photos[0].id} />
+                            <MainProfilePhoto src={profiles[activeProfile]?.photos[0]?.photoUrl} alt={profiles[0].photos[0]?.id} />
                         </PhotosContainer>
                         <ProfileDescr>&nbsp;</ProfileDescr>
                             <PhotosContainer>
                                 {
-                                    profiles[activeProfile].photos?.length > 1 ? 
-                                    profiles[activeProfile].photos.map((photo, index) => 
+                                    profiles[activeProfile]?.photos?.length > 1 ? 
+                                    profiles[activeProfile]?.photos.map((photo, index) => 
                                        <ProfilePhoto src={photo.photoUrl} alt={photo.id} key={photo.id}/>)
                                        :
                                     <></>
@@ -114,6 +140,7 @@ const LikeProfile = styled.div`
 const FindYourLoveScreen = styled.div`
     height: 90vh;
     width: 100%;
+    padding: 0 10px;
 
     display: flex;
     flex-direction: column;
@@ -179,5 +206,5 @@ const ProfileName = styled.div`
 const ProfileDescr = styled.div`
     width: 100%;
     min-height: 10vh;
-    background-color: ${lightColor2};
+    background-color: ${lightColor1};
 `

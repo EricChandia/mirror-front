@@ -1,6 +1,7 @@
 import { CgChevronRightO, CgChevronLeftO, CgProfile, CgHeart, CgCloseO, CgCheckO, CgChevronLeft, CgChevronRight} from "react-icons/cg";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { IconContext } from "react-icons";
+import { AiOutlineSend } from "react-icons/ai";
 
 
 export const IconRightButton = () => {
@@ -18,6 +19,15 @@ export const IconLeftButton = () => {
     </IconContext.Provider>
     )
 }
+
+export const IconBack = () => {
+    return (
+    <IconContext.Provider value={{ color: "white", size:"30px", className: 'icon-back' }}>
+        <CgChevronLeft/>
+    </IconContext.Provider>
+    )
+}
+
 
 export const IconProfile = () => {
     return (
@@ -62,6 +72,16 @@ export const IconLike = () => {
     </IconContext.Provider>
     )
 }
+
+
+export const IconSend = () => {
+    return (
+    <IconContext.Provider value={{ color: "white", size:"30px", className: 'icon-send' }}>
+        <AiOutlineSend/>
+    </IconContext.Provider>
+    )
+}
+
 
 
 
