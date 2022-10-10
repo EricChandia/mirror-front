@@ -6,6 +6,6 @@ export async function uploadPhoto(formData, config) {
 }
 
 export async function getProfilePhotos(config) {
-  const response = await client.post("/getProfilePhotos", config);
+  const response = await client.get("/getProfilePhotos", config);
   return response.data;
 }
