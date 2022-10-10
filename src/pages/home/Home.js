@@ -22,7 +22,6 @@ export default function Home(){
             
             try{
                 const profileData = await service.getUserProfile(config);
-                console.log(profileData);
                 if(!profileData){
                     setProfileExists(false);
                     return;
