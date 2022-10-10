@@ -101,7 +101,8 @@ export default function FindYourLove(){
                                 {
                                     profiles[activeProfile]?.photos?.length > 1 ? 
                                     profiles[activeProfile]?.photos.map((photo, index) => 
-                                       <ProfilePhoto src={photo.photoUrl} alt={photo.id} key={photo.id}/>)
+                                    index > 0 ? <ProfilePhoto src={photo.photoUrl} alt={photo.id} key={photo.id}/> : false
+                                    )
                                        :
                                     <></>
                                 }
