@@ -7,6 +7,7 @@ import { lightColor1 } from "../../assets/globalStyles/colors";
 import { LightButton1 } from "../../components/Button";
 import { IconLeftButton, IconRightButton } from "../../components/Icon";
 import { useNavigate } from "react-router-dom";
+import * as uploadService from "../../services/uploadService";
 
 const config = getHeaderToken();
 
@@ -28,7 +29,8 @@ export default function UploadPhotos() {
 
     try{
         setLoadingPhoto(true);
-        const uploadedPhoto = await axios.post("http://localhost:5000/uploadPhoto", formData, config);
+        //const uploadedPhoto = await axios.post("http://localhost:5000/uploadPhoto", formData, config);
+        const uploadedPhoto = await uploadService.uploadPhoto(formData, config);
         await getAllPics();
         setLoadingPhoto(false);
     }catch(error){
@@ -42,7 +44,8 @@ export default function UploadPhotos() {
 
   const getAllPics = async () => {
     const config = getHeaderToken();
-    const allPicsData = await axios.get("http://localhost:5000/getProfilePhotos", config);
+    //const allPicsData = await axios.get("http://localhost:5000/getProfilePhotos", config);
+    const allPicsData = await uploadService.getProfilePhotos(config);
     console.log(allPicsData.data);
 
     if(!allPicsData){
