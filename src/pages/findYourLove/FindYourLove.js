@@ -91,7 +91,9 @@ export default function FindYourLove(){
             <FindYourLoveScreen>
                 <CloseProfile display={displayLike} onClick={() => closeProfile()}><IconClose/></CloseProfile>
                 <LikeProfile display={displayLike} onClick={() => likeProfile()}><IconLike/></LikeProfile>
-                {profiles.length === 0 ? <h1>Poxa, parece que não tem mais ninguem perto de você :(</h1>
+                {profiles.length === 0 ? <h1>Poxa, parece que não tem mais ninguem perto de você :(
+                    <p>Tente daqui um tempinho de novo!</p>
+                </h1>
                 :
                 profiles.map((profile, index) => 
                     <ProfileContainer key={profile.id} display={activeProfile === index ? "flex" : "none"}>
@@ -153,6 +155,20 @@ const FindYourLoveScreen = styled.div`
     font-size: large;
     font-family: 'Quicksand';
     font-weight: 700;
+
+    h1{
+        padding: 10px 10px;
+        font-size: 24px;
+        font-family: 'Quicksand';
+        font-weight: 700;
+    }
+
+    p{
+        margin-top: 10px;
+        font-size: 20px;
+        font-family: 'Quicksand';
+        font-weight: 400;
+    }
 
 
 `

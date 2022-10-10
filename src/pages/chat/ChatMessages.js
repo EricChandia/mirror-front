@@ -32,6 +32,10 @@ export default function ChatMessages(){
 
  
     async function sendMessage(){
+        if(msgInput === ""){
+            return;
+        }
+
         const body = {
             matchId, whoReceivedId: matchProfileId, message: msgInput
         }

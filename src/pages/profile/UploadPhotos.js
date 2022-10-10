@@ -15,6 +15,7 @@ export default function UploadPhotos() {
   const [allPics, setAllPics] = useState([]);
   const [loadingPhoto, setLoadingPhoto] = useState(false);
   const navigate = useNavigate();
+  const config = getHeaderToken();
 
   useEffect(() => {
     getAllPics();

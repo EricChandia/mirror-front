@@ -1,4 +1,4 @@
-import { lightColor1 } from "../../assets/globalStyles/colors";
+import { darkColor0, lightColor0, lightColor1 } from "../../assets/globalStyles/colors";
 import Footer from "../../components/Footer";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -80,9 +80,10 @@ const ChatScreen = styled.div`
 
     h2{
         margin-top: 10vh;
-        font-size: 24px;
+        font-size: 20px;
         font-family: 'Quicksand';
-        font-weight: 700;
+        font-weight: 500;
+        color: ${darkColor0}
     }
 `
 
@@ -103,6 +104,6 @@ const ChatContainer = styled.div`
         margin-left: 10px;
         font-size: large;
         font-family: 'Quicksand';
-        font-weight: 700;
+        font-weight: 500;
     }
 `
